@@ -1,23 +1,28 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
+import "./style.css";
+import { setupCounter } from "./counter.js";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const apiEntry = "https://www.colourlovers.com/api/colors/random";
+console.log(fetch(apiEntry));
 
-setupCounter(document.querySelector('#counter'))
+fetch(apiEntry)
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+
+async function fetchData(apiEntry) {
+  try {
+    const response = await fetch(apiEntry);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+fetchData(apiEntry);
+
+const apiResponseDOM = document.getElementById("api-response");
+const putQuoteInHTML = async () => {
+  const quote = await fetchData(apiEntry);
+  apiResponseDOM.innerHTML = `Quote: ${quote.content}`;
+};
+putQuoteInHTML();

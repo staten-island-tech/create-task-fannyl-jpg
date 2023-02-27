@@ -1,8 +1,9 @@
 import "./style.css";
 import { setupCounter } from "./counter.js";
 import { HttpProxy } from "vite";
-/* 
-const apiEntry = "https://www.colourlovers.com/api/colors/random";
+
+const apiEntry =
+  "https://metmuseum.org/art/collection/search#!?q=test&offset=0&pageSize=0&sortBy=Relevance&sortOrder=asc&perPage=20";
 console.log(fetch(apiEntry));
 const form = document.querySelector(".search-form");
 const imageResults = document.querySelector(".image-container");
@@ -21,38 +22,28 @@ async function fetchData(apiEntry) {
     console.error(err);
   }
 }
-fetchData(apiEntry);*/
+fetchData(apiEntry);
 
+async function load_pic() {
+  const url =
+    "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=Auguste Renoir";
 
-fetch("http://colormind.io/api/", {
-  method: "POST",
-  body: JSON.stringify({
-    model: "default",
-    input: [[44, 43, 44], [90, 83, 82], "N", "N", "N"],
-  }),
-})
-  .then((res) => res.json())
-  .then(console.log);
+  const options = {
+    method: "GET",
+  };
 
+  let response = await fetch(url, options);
 
+  if (response.status === 200) {
+    const imageBlob = await response.blob();
+    const imageObjectURL = URL.createObjectURL(imageBlob);
 
-const apiEntry = "https://www.colourlovers.com/api/colors/random";
-console.log(fetch(apiEntry));
-const form = document.querySelector(".search-form");
-const imageResults = document.querySelector(".image-container");
+    const image = document.createElement("img");
+    image.src = imageObjectURL;
 
-fetch(apiEntry)
-  .then((response) => response.json())
-  .then((data) => console.log(data));
-
-async function fetchData(apiEntry) {
-  try {
-    const response = await fetch(apiEntry);
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (err) {
-    console.error(err);
+    const container = document.getElementById("your-container");
+    container.append(image);
+  } else {
+    console.log("HTTP-Error: " + response.status);
   }
 }
-fetchData(apiEntry);*/

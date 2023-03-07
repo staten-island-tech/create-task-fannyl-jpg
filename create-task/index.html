@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Color Generator</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
-  <body>
-    <!-- <div id="app"></div>
-    <ul class="container"></ul>
-    <button class="refresh-btn">Refresh Palette</button> -->
-    <!-- <div id="cocktail"></div>
-    <div id="overlay"></div> -->
-    <div class="'d-flex justify-content-center">
-      <div class="spinner-border">
-        <!-- role="status" id="loading"> -->
-        <span class="sr-only">Loading...</span>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@800&family=Karla:wght@800&family=Viga&display=swap"
+    rel="stylesheet">
+  <title>Color Scheme Generator</title>
+</head>
+
+<body>
+  <div class="container">
+    <input id="color-input" type="color" value="#e66465">
+    <select id="select-mode">
+      <option value="Monochrome"> Monochrome </option>
+      <option value="Monochrome-dark"> Monochrome-dark</option>
+      <option value="Monochrome-light"> Monochrome-light </option>
+      <option value="Analogic"> Analogic </option>
+      <option value="Analogic-complement"> Analogic-complement</option>
+      <option value="Complement"> Complement</option>
+      <option value="Triad"> Triad</option>
+    </select>
+    <button id="color-scheme-button">Get color scheme </button>
+    <div id="color-scheme-container">
     </div>
-    <h1>Registered Employees</h1>
-    <table id="employees"></table>
-    <script type="module" src="main.js"></script>
-  </body>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>
